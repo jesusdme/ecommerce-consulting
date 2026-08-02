@@ -1,10 +1,564 @@
 <!DOCTYPE html>
+
 <html lang="es">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Mi página</title>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Ecommerce Consulting · Consultoría digital en Bucaramanga</title>
+
+<meta name="description" content="Consultoría digital, desarrollo de software y estrategia de negocio en Bucaramanga, Colombia.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+
+  --white:#ffffff;
+
+  --gray-light:#f5f5f7;
+
+  --gray-dark:#1d1d1f;
+
+  --black:#000000;
+
+  --text-secondary:#86868b;
+
+  --blue:#0071e3;
+
+  --blue-dark:#0059b3;
+
+  --blue-light:#2997ff;
+
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+
+html{scroll-behavior:smooth;}
+
+@media (prefers-reduced-motion: reduce){
+
+  html{scroll-behavior:auto;}
+
+  *{animation-duration:0.01ms !important;animation-iteration-count:1 !important;transition-duration:0.01ms !important;}
+
+}
+
+body{
+
+  font-family:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+
+  background:var(--white);
+
+  color:var(--gray-dark);
+
+  -webkit-font-smoothing:antialiased;
+
+  overflow-x:hidden;
+
+}
+
+section{scroll-margin-top:52px;}
+
+svg{display:block;}
+
+a{color:inherit;}
+
+:focus-visible{outline:2px solid var(--blue);outline-offset:3px;}
+
+
+
+/* NAV */
+
+nav{
+
+  position:fixed;top:0;left:0;right:0;height:52px;
+
+  display:flex;align-items:center;
+
+  background:rgba(255,255,255,0.75);
+
+  backdrop-filter:blur(20px) saturate(180%);
+
+  -webkit-backdrop-filter:blur(20px) saturate(180%);
+
+  z-index:1000;
+
+  border-bottom:1px solid transparent;
+
+  transition:border-color 0.3s ease;
+
+}
+
+nav.scrolled{border-bottom-color:rgba(0,0,0,0.08);}
+
+.nav-inner{
+
+  max-width:1100px;margin:0 auto;width:100%;
+
+  display:flex;align-items:center;justify-content:space-between;
+
+  padding:0 24px;
+
+}
+
+.logo{display:flex;align-items:center;gap:8px;text-decoration:none;font-size:14px;font-weight:600;letter-spacing:-0.01em;color:var(--gray-dark);}
+
+.logo-mark{width:20px;height:20px;border-radius:6px;background:linear-gradient(135deg,var(--blue),#af52de);flex-shrink:0;}
+
+.nav-links{display:flex;gap:32px;list-style:none;}
+
+.nav-links a{font-size:12px;text-decoration:none;color:var(--gray-dark);opacity:0.85;transition:opacity 0.2s;}
+
+.nav-links a:hover{opacity:1;}
+
+
+
+/* BUTTONS */
+
+.btn{display:inline-block;padding:11px 24px;border-radius:980px;font-size:14px;font-weight:400;text-decoration:none;border:none;cursor:pointer;font-family:inherit;transition:all 0.25s ease;}
+
+.btn-primary{background:var(--blue);color:var(--white);}
+
+.btn-primary:hover{background:var(--blue-dark);transform:translateY(-1px);}
+
+.link-arrow{color:var(--blue);font-size:15px;text-decoration:none;}
+
+.link-arrow::after{content:'\203A';margin-left:5px;display:inline-block;transition:margin-left 0.2s;}
+
+.link-arrow:hover::after{margin-left:9px;}
+
+
+
+/* EYEBROW */
+
+.eyebrow{font-size:13px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--blue);margin-bottom:20px;}
+
+
+
+/* HERO */
+
+.hero{
+
+  position:relative;min-height:100vh;padding-top:52px;
+
+  display:flex;align-items:center;justify-content:center;text-align:center;
+
+  overflow:hidden;
+
+  background:linear-gradient(180deg,#fbfbfd 0%,#f5f5f7 100%);
+
+}
+
+.orb{position:absolute;border-radius:50%;filter:blur(90px);z-index:0;}
+
+.orb1{width:520px;height:520px;background:radial-gradient(circle,rgba(0,113,227,0.35),transparent 70%);top:-140px;left:-160px;}
+
+.orb2{width:440px;height:440px;background:radial-gradient(circle,rgba(175,82,222,0.30),transparent 70%);bottom:-120px;right:-140px;}
+
+.orb3{width:360px;height:360px;background:radial-gradient(circle,rgba(90,200,250,0.30),transparent 70%);top:35%;right:8%;}
+
+.hero-content{position:relative;z-index:1;max-width:860px;padding:0 24px;}
+
+.hero-title{font-size:clamp(2.6rem,7vw,5.5rem);font-weight:600;letter-spacing:-0.03em;line-height:1.05;margin-bottom:24px;opacity:0;animation:fadeUp 0.9s ease 0.05s forwards;}
+
+.accent{background:linear-gradient(135deg,var(--blue),#af52de);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;}
+
+.hero-sub{font-size:clamp(1.05rem,2vw,1.4rem);color:var(--text-secondary);max-width:560px;margin:0 auto 40px;line-height:1.5;opacity:0;animation:fadeUp 0.9s ease 0.2s forwards;}
+
+.hero-cta{display:flex;gap:28px;align-items:center;justify-content:center;opacity:0;animation:fadeUp 0.9s ease 0.35s forwards;}
+
+.scroll-hint{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);opacity:0.35;animation:bounce 2.2s ease-in-out infinite;}
+
+
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+
+@keyframes bounce{0%,100%{transform:translate(-50%,0);}50%{transform:translate(-50%,8px);}}
+
+
+
+/* SECTIONS GENERAL */
+
+.section{padding:150px 24px;}
+
+.section-header{max-width:680px;margin:0 auto 80px;text-align:center;}
+
+.section-header h2{font-size:clamp(2rem,4.4vw,3.1rem);font-weight:600;letter-spacing:-0.02em;margin-bottom:20px;line-height:1.1;}
+
+.section-header p{font-size:1.1rem;color:var(--text-secondary);line-height:1.6;}
+
+
+
+.fade-in{opacity:0;transform:translateY(28px);transition:opacity 0.8s ease,transform 0.8s ease;}
+
+.fade-in.is-visible{opacity:1;transform:translateY(0);}
+
+
+
+/* NOSOTROS */
+
+.services-grid{max-width:980px;margin:0 auto;display:grid;grid-template-columns:repeat(2,1fr);gap:24px;}
+
+.service-card{background:var(--gray-light);border-radius:24px;padding:44px 36px;transition:transform 0.35s ease;}
+
+.service-card:hover{transform:translateY(-6px);}
+
+.service-card:nth-child(1){transition-delay:0s;}
+
+.service-card:nth-child(2){transition-delay:0.1s;}
+
+.service-card:nth-child(3){transition-delay:0.15s;}
+
+.service-card:nth-child(4){transition-delay:0.25s;}
+
+.service-icon{width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,rgba(0,113,227,0.12),rgba(90,200,250,0.14));display:flex;align-items:center;justify-content:center;margin-bottom:26px;}
+
+.service-icon svg{width:24px;height:24px;stroke:var(--blue);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;}
+
+.service-card h3{font-size:1.28rem;font-weight:600;letter-spacing:-0.01em;margin-bottom:10px;}
+
+.service-card p{color:var(--text-secondary);font-size:0.97rem;line-height:1.6;}
+
+.nosotros-cta{text-align:center;margin-top:64px;font-size:1.1rem;color:var(--text-secondary);}
+
+
+
+/* CONTACTO */
+
+.contacto{background:var(--black);color:var(--white);}
+
+.contacto .eyebrow{color:var(--blue-light);}
+
+.contact-inner{max-width:1020px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;}
+
+.contact-info h2{font-size:clamp(1.9rem,4vw,2.6rem);font-weight:600;letter-spacing:-0.02em;margin-bottom:18px;line-height:1.1;}
+
+.contact-info>p{color:rgba(255,255,255,0.6);font-size:1.05rem;line-height:1.6;margin-bottom:44px;}
+
+.contact-row{display:flex;align-items:center;gap:16px;margin-bottom:22px;}
+
+.contact-row .icon-wrap{width:38px;height:38px;border-radius:10px;background:rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+
+.contact-row svg{width:18px;height:18px;stroke:var(--white);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;}
+
+.contact-row span{font-size:1rem;color:rgba(255,255,255,0.85);}
+
+
+
+.contact-form{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:20px;padding:40px;}
+
+.form-group{margin-bottom:24px;}
+
+.form-group label{display:block;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;color:rgba(255,255,255,0.45);margin-bottom:10px;}
+
+.form-group input,.form-group textarea{width:100%;background:transparent;border:none;border-bottom:1px solid rgba(255,255,255,0.2);color:var(--white);font-size:15px;padding:10px 2px;font-family:inherit;transition:border-color 0.2s;}
+
+.form-group input:focus,.form-group textarea:focus{outline:none;border-bottom-color:var(--blue-light);}
+
+.form-group textarea{resize:vertical;min-height:90px;}
+
+.form-group input::placeholder,.form-group textarea::placeholder{color:rgba(255,255,255,0.3);}
+
+.contact-form .btn-primary{width:100%;text-align:center;margin-top:8px;font-size:15px;padding:13px 24px;}
+
+
+
+footer{background:var(--black);border-top:1px solid rgba(255,255,255,0.08);padding:32px 24px;text-align:center;}
+
+footer p{font-size:12px;color:rgba(255,255,255,0.45);}
+
+
+
+/* RESPONSIVE */
+
+@media (max-width:900px){
+
+  .services-grid{grid-template-columns:1fr;}
+
+  .contact-inner{grid-template-columns:1fr;gap:56px;}
+
+}
+
+@media (max-width:480px){
+
+  .nav-links{gap:16px;}
+
+  .nav-links a{font-size:11px;}
+
+  .logo .logo-text{display:none;}
+
+  .section{padding:100px 20px;}
+
+  .hero-cta{gap:20px;flex-wrap:wrap;}
+
+  .contact-form{padding:28px;}
+
+}
+
+</style>
+
 </head>
+
 <body>
-    <h1>Hola GitHub Pages</h1>
+
+
+
+<nav id="mainNav">
+
+  <div class="nav-inner">
+
+    <a href="#inicio" class="logo"><span class="logo-mark"></span><span class="logo-text">Ecommerce Consulting</span></a>
+
+    <ul class="nav-links">
+
+      <li><a href="#inicio">Inicio</a></li>
+
+      <li><a href="#nosotros">Nosotros</a></li>
+
+      <li><a href="#contacto">Contacto</a></li>
+
+    </ul>
+
+  </div>
+
+</nav>
+
+
+
+<section id="inicio" class="hero">
+
+  <div class="orb orb1"></div>
+
+  <div class="orb orb2"></div>
+
+  <div class="orb orb3"></div>
+
+  <div class="hero-content">
+
+    <p class="eyebrow">Consultoría digital · Bucaramanga</p>
+
+    <h1 class="hero-title">Marketing. Software.<br><span class="accent">Crecimiento real.</span></h1>
+
+    <p class="hero-sub">Ayudamos a empresas colombianas y extranjeras a crecer con estrategia digital, desarrollo de software y consultoría tecnológica.</p>
+
+    <div class="hero-cta">
+
+      <a href="#nosotros" class="btn btn-primary">Conócenos</a>
+
+      <a href="#contacto" class="link-arrow">Contáctanos</a>
+
+    </div>
+
+  </div>
+
+  <a href="#nosotros" class="scroll-hint" aria-label="Ir a la sección Nosotros">
+
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#1d1d1f" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+
+  </a>
+
+</section>
+
+
+
+<section id="nosotros" class="section">
+
+  <div class="section-header fade-in">
+
+    <p class="eyebrow">Acerca de nosotros</p>
+
+    <h2>Qué hacemos</h2>
+
+    <p>Somos una firma de consultoría digital con sede en Bucaramanga. Unimos marketing, desarrollo de software y estrategia de negocio para impulsar el crecimiento de nuestros clientes, dentro y fuera de Colombia.</p>
+
+  </div>
+
+  <div class="services-grid">
+
+    <div class="service-card fade-in">
+
+      <div class="service-icon"><svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
+
+      <h3>Marketing Digital</h3>
+
+      <p>Planeación, diseño y gestión de campañas publicitarias y presencia en redes sociales.</p>
+
+    </div>
+
+    <div class="service-card fade-in">
+
+      <div class="service-icon"><svg viewBox="0 0 24 24"><polyline points="8 6 2 12 8 18"/><polyline points="16 6 22 12 16 18"/></svg></div>
+
+      <h3>Desarrollo de Software</h3>
+
+      <p>Aplicaciones móviles, sitios web y contenido digital hechos a la medida de tu negocio.</p>
+
+    </div>
+
+    <div class="service-card fade-in">
+
+      <div class="service-icon"><svg viewBox="0 0 24 24"><line x1="4" y1="6" x2="20" y2="6"/><circle cx="14" cy="6" r="2"/><line x1="4" y1="12" x2="20" y2="12"/><circle cx="9" cy="12" r="2"/><line x1="4" y1="18" x2="20" y2="18"/><circle cx="16" cy="18" r="2"/></svg></div>
+
+      <h3>Consultoría IT</h3>
+
+      <p>Asesoría empresarial y acompañamiento en la implementación de nuevas tecnologías.</p>
+
+    </div>
+
+    <div class="service-card fade-in">
+
+      <div class="service-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><line x1="3" y1="12" x2="21" y2="12"/><path d="M12 3a15.3 15.3 0 014 9 15.3 15.3 0 01-4 9 15.3 15.3 0 01-4-9 15.3 15.3 0 014-9z"/></svg></div>
+
+      <h3>Expansión Internacional</h3>
+
+      <p>Conectamos empresas extranjeras con el mercado colombiano y las acompañamos en su crecimiento.</p>
+
+    </div>
+
+  </div>
+
+  <p class="nosotros-cta fade-in">¿Tienes un proyecto en mente? <a href="#contacto" class="link-arrow">Hablemos</a></p>
+
+</section>
+
+
+
+<section id="contacto" class="section contacto">
+
+  <div class="contact-inner">
+
+    <div class="contact-info fade-in">
+
+      <p class="eyebrow">Contacto</p>
+
+      <h2>Hablemos de tu proyecto</h2>
+
+      <p>Cuéntanos qué necesitas. Te responderemos lo antes posible.</p>
+
+      <div class="contact-row">
+
+        <span class="icon-wrap"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+
+        <span>Bucaramanga, Santander, Colombia</span>
+
+      </div>
+
+      <div class="contact-row">
+
+        <span class="icon-wrap"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span>
+
+        <span>admin@ecommercelconsul.com</span>
+
+      </div>
+
+      <div class="contact-row">
+
+        <span class="icon-wrap"><svg viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="2"/><line x1="11" y1="18" x2="13" y2="18"/></svg></span>
+
+        <span>+57 301 461 5716</span>
+
+      </div>
+
+    </div>
+
+    <form class="contact-form fade-in" id="contactForm">
+
+      <div class="form-group">
+
+        <label for="nombre">Nombre</label>
+
+        <input type="text" id="nombre" placeholder="Tu nombre">
+
+      </div>
+
+      <div class="form-group">
+
+        <label for="email">Correo electrónico</label>
+
+        <input type="email" id="email" placeholder="tu@correo.com">
+
+      </div>
+
+      <div class="form-group">
+
+        <label for="mensaje">Mensaje</label>
+
+        <textarea id="mensaje" placeholder="Cuéntanos sobre tu proyecto..."></textarea>
+
+      </div>
+
+      <button type="submit" class="btn btn-primary">Enviar mensaje</button>
+
+    </form>
+
+  </div>
+
+</section>
+
+
+
+<footer>
+
+  <p>© 2026 Ecommerce Consulting S.A.S. · Bucaramanga, Colombia</p>
+
+</footer>
+
+
+
+<script>
+
+const nav = document.getElementById('mainNav');
+
+window.addEventListener('scroll', () => {
+
+  if (window.scrollY > 20) { nav.classList.add('scrolled'); }
+
+  else { nav.classList.remove('scrolled'); }
+
+});
+
+
+
+const observer = new IntersectionObserver((entries) => {
+
+  entries.forEach(entry => {
+
+    if (entry.isIntersecting) {
+
+      entry.target.classList.add('is-visible');
+
+      observer.unobserve(entry.target);
+
+    }
+
+  });
+
+}, { threshold: 0.15 });
+
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+
+
+// La lógica de envío del formulario se implementará más adelante
+
+document.getElementById('contactForm').addEventListener('submit', function(e){
+
+  e.preventDefault();
+
+});
+
+</script>
+
 </body>
+
 </html>
+
