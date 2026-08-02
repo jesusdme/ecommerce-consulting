@@ -16,3 +16,7 @@ function debounce(fn, wait) {
     timer = setTimeout(() => fn.apply(this, args), wait);
   };
 }
+
+function prefersReducedMotion() {
+  return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+}
