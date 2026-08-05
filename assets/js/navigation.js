@@ -13,4 +13,20 @@
   }, 10);
 
   window.addEventListener('scroll', onScroll);
+
+  // Menú hamburguesa (móvil)
+  const toggle = qs('#navToggle');
+  const links = qs('#navLinks');
+  if (toggle && links) {
+    toggle.addEventListener('click', () => {
+      const isOpen = links.classList.toggle('is-open');
+      toggle.setAttribute('aria-expanded', String(isOpen));
+    });
+    qsa('a', links).forEach((link) => {
+      link.addEventListener('click', () => {
+        links.classList.remove('is-open');
+        toggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
 })();
