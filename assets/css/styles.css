@@ -8,12 +8,10 @@
   --white:#ffffff;
   --gray-light:#f7f7f8;
   --dark:#0a0a0c;
-  --dark-2:#141417;
 
   /* Texto */
   --ink:#111111;
   --text-secondary:#666666;
-  --text-tertiary:#8a8a8f;
 
   /* Acento */
   --blue:#2563eb;
@@ -23,7 +21,6 @@
   --teal:#0ea5e9;
 
   /* Bordes y sombras */
-  --border:rgba(17,17,17,0.08);
   --border-soft:rgba(17,17,17,0.06);
   --border-hover:rgba(37,99,235,0.32);
   --shadow-sm:0 1px 2px rgba(17,17,17,0.04);
@@ -79,8 +76,6 @@ nav{
   position:fixed;top:0;left:0;right:0;height:64px;
   display:flex;align-items:center;
   background:linear-gradient(120deg,#241b52 0%,#0d1030 55%,#1a1140 100%);
-  backdrop-filter:blur(20px) saturate(180%);
-  -webkit-backdrop-filter:blur(20px) saturate(180%);
   z-index:1000;
   border-bottom:1px solid rgba(255,255,255,0.08);
   transition:box-shadow 0.3s ease;
@@ -164,7 +159,7 @@ nav.scrolled{box-shadow:0 8px 24px -16px rgba(0,0,0,0.5);}
   background:linear-gradient(180deg,#ffffff 0%,#f7f7f8 100%);
 }
 .orb{
-  position:absolute;border-radius:50%;filter:blur(100px);z-index:0;
+  position:absolute;border-radius:50%;filter:blur(76px);z-index:0;
   transform:translate(calc(var(--px,0) * 1px), calc(var(--py,0) * 1px));
   will-change:transform;
 }
@@ -338,6 +333,12 @@ footer p{font-size:12px;color:rgba(255,255,255,0.45);letter-spacing:0.01em;}
   .contact-inner{grid-template-columns:1fr;gap:56px;}
   .process-steps{grid-template-columns:repeat(2,1fr);}
   .differentiators{grid-template-columns:1fr;}
+}
+/* Menos orbes y menos blur en móvil: mismo look, mucho menor costo de pintado en GPUs de gama media/baja */
+@media (max-width:640px){
+  .orb{filter:blur(52px);}
+  .nosotros-page .orb-c,
+  .nosotros-page .orb-e{display:none;}
 }
 @media (max-width:480px){
   .nav-links{gap:16px;}

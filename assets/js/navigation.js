@@ -12,7 +12,7 @@
     }
   }, 10);
 
-  window.addEventListener('scroll', onScroll);
+  window.addEventListener('scroll', onScroll, { passive: true });
 
   // Menú hamburguesa (móvil)
   const toggle = qs('#navToggle');
